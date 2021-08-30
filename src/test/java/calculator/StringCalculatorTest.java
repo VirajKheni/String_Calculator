@@ -36,5 +36,20 @@ public class StringCalculatorTest {
             int expected = 3;
             assertEquals(expected, actual, () -> "Should return the sum of two number which delimited by a comma is " + expected + " but returned " + actual);
         }
+        @Test
+        @DisplayName("When string is Multiple Numbers Delimiter by Comma")
+        void stringIsMultipleNumbersSepByCommaTest() {
+            int actual = StringCalculator.add("1,2,3");
+            int expected = 6;
+            assertEquals(expected, actual , () -> "Should return the sum of multiple numbers which delimited by a comma is "+ expected + " but returned " + actual);
+        }
+
+        @Test
+        @DisplayName("When string is Delimiter by Comma and NewLine character")
+        void stringIsDelimiterByNewLineTest() {
+            int actual = StringCalculator.add("1,2\n3,4\n5");
+            int expected = 15;
+            assertEquals(expected, actual , () -> "Should return the sum of multiple numbers which delimited by a comma and new line is "+ expected + " but returned " + actual);
+        }
     }
 }
