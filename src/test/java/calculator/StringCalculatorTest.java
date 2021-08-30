@@ -26,6 +26,14 @@ public class StringCalculatorTest {
         assertEquals(expected, actual , () -> "Should return "+ expected + " but returned " + actual);
     }
 
+    @Test
+    @DisplayName("When string in Numbers bigger than 1000 then it should be ignored")
+    void stringInNumberBiggerThan1000Test() {
+        int actual = StringCalculator.add("1,1002,3");
+        int expected = 4;
+        assertEquals(expected, actual , () -> "should return the sum of ignored by bigger than 1000 is "+ expected + " but returned " + actual);
+    }
+
     @Nested
     @DisplayName("When string is Comma or NewLine Delimiter")
     @Tag("CustomDelimiter")

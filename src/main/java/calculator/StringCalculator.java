@@ -103,7 +103,7 @@ public class StringCalculator {
     private static int sumOfAllNumbers(ArrayList<Integer> numbers) {
         int sum=0;
         for(int number : numbers) {
-            if(number > 1000) continue;
+            if(number > 1000) continue; // Numbers bigger than 1000 then it should be ignored
             sum +=number;
         }
         return sum;
