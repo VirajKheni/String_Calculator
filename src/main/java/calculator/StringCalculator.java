@@ -21,14 +21,34 @@ public class StringCalculator {
 
     private static ArrayList<Integer> stringSplitByDelimiter(String text) {
         List<String> elements;
-
-        elements = Arrays.asList(stringSplitByCommaOrNewLineDelimiter(text));
-
+        if(checkStringStartWithSpecificDelimiter(text)) {
+            elements = Arrays.asList(stringSplitByCustomDelimiter(text));
+        }else {
+            elements = Arrays.asList(stringSplitByCommaOrNewLineDelimiter(text));
+        }
         return toInteger(elements);
+    }
+
+    private static boolean checkStringStartWithSpecificDelimiter(String text) {
+        return text.startsWith("//");
     }
 
     private static String[] stringSplitByCommaOrNewLineDelimiter(String text) {
         return text.split("[,\n]");
+    }
+
+    private static String[] stringSplitByCustomDelimiter(String text) {
+        String customDelimiter = getCustomDelimiters(text);
+        text=getCustomNumbersString(text);
+        return text.split(customDelimiter);
+    }
+
+    private static String getCustomDelimiters(String text) {
+        return "\\"+text.substring(text.indexOf("//") + 2, text.indexOf("\n"));
+    }
+
+    private static String getCustomNumbersString(String text) {
+        return text.substring(text.indexOf("\n")+1);
     }
 
     private static int toInteger(String text) throws NumberFormatException {

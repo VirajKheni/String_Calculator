@@ -52,4 +52,17 @@ public class StringCalculatorTest {
             assertEquals(expected, actual , () -> "Should return the sum of multiple numbers which delimited by a comma and new line is "+ expected + " but returned " + actual);
         }
     }
+
+    @Nested
+    @DisplayName("When string is Custom Delimiter")
+    @Tag("CustomDelimiter")
+    class CustomDelimiter {
+        @Test
+        @DisplayName("When string is Single Custom Delimiter")
+        void stringIsSingleCustomDelimiterTest() {
+            int actual = StringCalculator.add("//;\n1;2;3");
+            int expected = 6;
+            assertEquals(expected, actual, () -> "Should return the sum of numbers which splited by single custom delimiter is " + expected + " but returned " + actual);
+        }
+    }
 }
