@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
 
@@ -90,5 +91,14 @@ public class StringCalculatorTest {
         }
     }
 
-
+    @Nested
+    @DisplayName("When string is Negatives Number")
+    @Tag("NegativesNumber")
+    class NegativesNumber {
+        @Test
+        @DisplayName("When string is Negatives Number")
+        void stringIsNegativesNumberTest() {
+            assertThrows(RuntimeException.class, () -> StringCalculator.add("-1,2,3"), "negatives not allowed");
+        }
+    }
 }

@@ -13,6 +13,7 @@ public class StringCalculator {
             return 0;
         }else {
             ArrayList<Integer> numbers = stringSplitByDelimiter(text);
+            stringHaveNegativesNumber(numbers);
             return sumOfAllNumbers(numbers);
         }
     }
@@ -70,6 +71,21 @@ public class StringCalculator {
 
     private static String getCustomDelimitedRegexString(ArrayList<String> customDelimiters) {
         return "[\\"+ String.join("|\\", customDelimiters) +"]+";
+    }
+
+    private static void stringHaveNegativesNumber(ArrayList<Integer> numbers) {
+        ArrayList<Integer> negativeNumber = getNegativesNumbers(numbers);
+        if(negativeNumber.size() > 0) {
+            throw new RuntimeException("negatives not allowed ");
+        }
+    }
+
+    private static ArrayList<Integer> getNegativesNumbers(ArrayList<Integer> numbers) {
+        ArrayList<Integer> negativeNumbers = new ArrayList<>();
+        for(int number: numbers)
+            if(number<0)
+                negativeNumbers.add(number);
+        return negativeNumbers;
     }
 
     private static int toInteger(String text) throws NumberFormatException {
