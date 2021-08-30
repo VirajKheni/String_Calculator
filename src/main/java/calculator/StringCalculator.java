@@ -3,6 +3,8 @@ package calculator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
 
@@ -40,6 +42,7 @@ public class StringCalculator {
     private static String[] stringSplitByCustomDelimiter(String text) {
         String customDelimiter = getCustomDelimiters(text);
         text=getCustomNumbersString(text);
+        customDelimiter = multipleCustomDelimiter(customDelimiter);
         return text.split(customDelimiter);
     }
 
@@ -49,6 +52,24 @@ public class StringCalculator {
 
     private static String getCustomNumbersString(String text) {
         return text.substring(text.indexOf("\n")+1);
+    }
+
+    private static String multipleCustomDelimiter(String customDelimiter) {
+        if(customDelimiter.contains("[")) {
+            ArrayList<String> customDelimiters = new ArrayList<>();
+            String regex = "\\[(.*?)]";
+            Pattern p = Pattern.compile(regex);
+            Matcher m = p.matcher(customDelimiter);
+            while (m.find())
+                customDelimiters.add(m.group(1));
+
+            customDelimiter = getCustomDelimitedRegexString(customDelimiters);
+        }
+        return customDelimiter;
+    }
+
+    private static String getCustomDelimitedRegexString(ArrayList<String> customDelimiters) {
+        return "[\\"+ String.join("|\\", customDelimiters) +"]+";
     }
 
     private static int toInteger(String text) throws NumberFormatException {

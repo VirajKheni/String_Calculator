@@ -64,5 +64,31 @@ public class StringCalculatorTest {
             int expected = 6;
             assertEquals(expected, actual, () -> "Should return the sum of numbers which splited by single custom delimiter is " + expected + " but returned " + actual);
         }
+
+        @Test
+        @DisplayName("When string is Single Custom Delimiters with Longer Length")
+        void stringIsSingleCustomDelimiterWithLongerLengthTest() {
+            int actual = StringCalculator.add("//[***]\n1***2***3");
+            int expected = 6;
+            assertEquals(expected, actual , () -> "Should return the sum of numbers which splited by single custom delimiter with longer length is "+ expected + " but returned " + actual);
+        }
+
+        @Test
+        @DisplayName("When string is Multiple Custom Delimiter")
+        void stringIsMultipleCustomDelimiterTest() {
+            int actual = StringCalculator.add("//[*][%]\n1*2%3");
+            int expected = 6;
+            assertEquals(expected, actual , () -> "Should return the sum of numbers which splited by multiple custom delimiter is "+ expected + " but returned " + actual);
+        }
+
+        @Test
+        @DisplayName("When string is Multiple Custom Delimiters with Longer Length")
+        void stringIsMultipleCustomDelimiterWithLongerLengthTest() {
+            int actual = StringCalculator.add("//[**][%%]\n1**2%%3");
+            int expected = 6;
+            assertEquals(expected, actual , () -> "Should return sum of numbers which splited by multiple custom delimiter with longer length is "+ expected + " but returned " + actual);
+        }
     }
+
+
 }
