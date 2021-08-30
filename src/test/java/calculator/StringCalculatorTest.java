@@ -15,5 +15,13 @@ public class StringCalculatorTest {
         assertEquals(expected, actual , () -> "Should return "+ expected + " but returned " + actual);
     }
 
+    @Test
+    @DisplayName("When string is One Number")
+    void stringIsOneNumberTest() {
+        int actual = StringCalculator.add("1");
+        int expected = 1;
+        assertEquals(expected, actual , () -> "Should return "+ expected + " but returned " + actual);
+    }
+
 
 }
