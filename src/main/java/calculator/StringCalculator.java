@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
 
@@ -76,7 +77,7 @@ public class StringCalculator {
     private static void stringHaveNegativesNumber(ArrayList<Integer> numbers) {
         ArrayList<Integer> negativeNumber = getNegativesNumbers(numbers);
         if(negativeNumber.size() > 0) {
-            throw new RuntimeException("negatives not allowed ");
+            throw new RuntimeException("negatives not allowed " + negativeNumber.stream().map(String::valueOf).collect(Collectors.joining(",")));
         }
     }
 

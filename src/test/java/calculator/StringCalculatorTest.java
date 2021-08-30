@@ -63,7 +63,7 @@ public class StringCalculatorTest {
         void stringIsSingleCustomDelimiterTest() {
             int actual = StringCalculator.add("//;\n1;2;3");
             int expected = 6;
-            assertEquals(expected, actual, () -> "Should return the sum of numbers which splited by single custom delimiter is " + expected + " but returned " + actual);
+            assertEquals(expected, actual, () -> "Should return the sum of numbers which splinted by single custom delimiter is " + expected + " but returned " + actual);
         }
 
         @Test
@@ -71,7 +71,7 @@ public class StringCalculatorTest {
         void stringIsSingleCustomDelimiterWithLongerLengthTest() {
             int actual = StringCalculator.add("//[***]\n1***2***3");
             int expected = 6;
-            assertEquals(expected, actual , () -> "Should return the sum of numbers which splited by single custom delimiter with longer length is "+ expected + " but returned " + actual);
+            assertEquals(expected, actual , () -> "Should return the sum of numbers which splinted by single custom delimiter with longer length is "+ expected + " but returned " + actual);
         }
 
         @Test
@@ -79,7 +79,7 @@ public class StringCalculatorTest {
         void stringIsMultipleCustomDelimiterTest() {
             int actual = StringCalculator.add("//[*][%]\n1*2%3");
             int expected = 6;
-            assertEquals(expected, actual , () -> "Should return the sum of numbers which splited by multiple custom delimiter is "+ expected + " but returned " + actual);
+            assertEquals(expected, actual , () -> "Should return the sum of numbers which splinted by multiple custom delimiter is "+ expected + " but returned " + actual);
         }
 
         @Test
@@ -87,7 +87,7 @@ public class StringCalculatorTest {
         void stringIsMultipleCustomDelimiterWithLongerLengthTest() {
             int actual = StringCalculator.add("//[**][%%]\n1**2%%3");
             int expected = 6;
-            assertEquals(expected, actual , () -> "Should return sum of numbers which splited by multiple custom delimiter with longer length is "+ expected + " but returned " + actual);
+            assertEquals(expected, actual , () -> "Should return sum of numbers which splinted by multiple custom delimiter with longer length is "+ expected + " but returned " + actual);
         }
     }
 
@@ -99,6 +99,13 @@ public class StringCalculatorTest {
         @DisplayName("When string is Negatives Number")
         void stringIsNegativesNumberTest() {
             assertThrows(RuntimeException.class, () -> StringCalculator.add("-1,2,3"), "negatives not allowed");
+        }
+
+        @Test
+        @DisplayName("When string is Multiple Negatives Number")
+        void stringIsMultipleNegativesNumberTest() {
+            Throwable exception = assertThrows(RuntimeException.class ,() -> StringCalculator.add("-1,-2,3") , "negatives not allowed and print all negatives numbers");
+            assertEquals("negatives not allowed -1,-2",exception.getMessage());
         }
     }
 }
